@@ -19,8 +19,24 @@ object ChessGame {
     fun reset() {
         clear()
         for (i in 0 until BOARD_SIZE) {
-            addPiece(ChessPiece(i, 0, Player.WHITE, Chessman.PAWN, R.drawable.pawn_white))
-            addPiece(ChessPiece(i, BOARD_SIZE-1, Player.BLACK, Chessman.PAWN, R.drawable.pawn_black))
+            addPiece(
+                ChessPiece(
+                    i,
+                    0,
+                    Player.WHITE,
+                    Chessman.PAWN,
+                    R.drawable.pawn_white
+                )
+            )
+            addPiece(
+                ChessPiece(
+                    i,
+                    BOARD_SIZE - 1,
+                    Player.BLACK,
+                    Chessman.PAWN,
+                    R.drawable.pawn_black
+                )
+            )
         }
     }
 
@@ -74,23 +90,14 @@ object ChessGame {
 
 
     //**Utility**\\
-    private fun canPawnMove(from: Square, to: Square): Boolean {
-            if(
-                (pieceAt(from)?.player == Player.WHITE && from.row + 1 == to.row)
-                || (pieceAt(from)?.player == Player.BLACK && from.row - 1 == to.row)) {
-                if(
-                    from.col == to.col
-                    && pieceAt(to) == null){
-                    return true
-                } else if (
-                    pieceAt(to) != null
-                    && (from.col + 1 == to.col || from.col - 1 == to.col)){
-                    return true
-                }
-            }
-        return false
-    }
-
+    private fun canPawnMove(from: Square, to: Square): Boolean =
+        ((pieceAt(from)?.player == Player.WHITE && from.row + 1 == to.row) ||
+         (pieceAt(from)?.player == Player.BLACK && from.row - 1 == to.row))
+             &&
+             (
+                 (pieceAt(to) == null && from.col == to.col) ||
+                 (pieceAt(to) != null && (from.col + 1 == to.col || from.col - 1 == to.col))
+             )
 
     //TODO:Why do we need these???
     fun pgnBoard(): String {
@@ -106,6 +113,7 @@ object ChessGame {
 
         return desc
     }
+
     override fun toString(): String {
         var desc = " \n"
         for (row in (BOARD_SIZE - 1) downTo 0) {
@@ -117,6 +125,7 @@ object ChessGame {
 
         return desc
     }
+
     private fun boardRow(row: Int): String {
         var desc = ""
         for (col in 0 until BOARD_SIZE) {

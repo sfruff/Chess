@@ -6,6 +6,22 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/black_give_up"
+            android:layout_width="191dp"
+            android:layout_height="60dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/give_up"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <com.goldenthumb.android.chess.ChessView
         android:id="@+id/chess_view"
         android:layout_width="wrap_content"
@@ -18,26 +34,31 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/white_give_up"
+            android:layout_width="191dp"
+            android:layout_height="60dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/give_up"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
             android:id="@+id/reset_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/reset_button"/>
-
-        <Button
-            android:id="@+id/listen_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/listen_button"/>
-
-        <Button
-            android:id="@+id/connect_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/connect_button"/>
-
+            android:layout_width="191dp"
+            android:layout_height="60dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/reset_button"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

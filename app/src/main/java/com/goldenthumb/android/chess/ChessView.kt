@@ -23,7 +23,6 @@ class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) 
     private val bitmaps = mutableMapOf<Int, Bitmap>()
     private val paint = Paint()
 
-
     private var movingPieceBitmap: Bitmap? = null
     private var movingPiece: ChessPiece? = null
     private var fromCol: Int = -1
