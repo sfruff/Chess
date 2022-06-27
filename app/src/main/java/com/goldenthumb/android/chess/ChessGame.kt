@@ -6,6 +6,10 @@ import com.goldenthumb.android.chess.data.Player
 import com.goldenthumb.android.chess.data.Square
 
 object ChessGame {
+
+    private var whiteWinCount = 0
+    private var blackWinCount = 0
+
     private var piecesBox = mutableSetOf<ChessPiece>()
 
     init {
@@ -17,6 +21,12 @@ object ChessGame {
     }
 
     fun reset() {
+        whiteWinCount = 0
+        blackWinCount = 0
+        resetPieces();
+    }
+
+    fun resetPieces(){
         clear()
         for (i in 0 until BOARD_SIZE) {
             addPiece(
@@ -40,7 +50,6 @@ object ChessGame {
         }
     }
 
-
     fun addPiece(piece: ChessPiece) {
         piecesBox.add(piece)
     }
@@ -63,6 +72,15 @@ object ChessGame {
         }
     }
 
+    fun whiteWins(){
+        whiteWinCount++
+        resetPieces()
+    }
+
+    fun blackWins(){
+        blackWinCount++
+        resetPieces()
+    }
 
     private fun movePiece(fromCol: Int, fromRow: Int, toCol: Int, toRow: Int) {
         if (fromCol == toCol && fromRow == toRow) return
@@ -87,7 +105,6 @@ object ChessGame {
         }
         return null
     }
-
 
     //**Utility**\\
     private fun canPawnMove(from: Square, to: Square): Boolean =

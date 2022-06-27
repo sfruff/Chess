@@ -16,7 +16,7 @@ import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
 
-const val BOARD_SIZE = 8;
+const val BOARD_SIZE = 3
 
 class MainActivity : AppCompatActivity(), ChessDelegate {
 
@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity(), ChessDelegate {
     private lateinit var resetButton: Button
     private lateinit var whiteGivesUp: Button
     private lateinit var blackGivesUp: Button
-    private var printWriter: PrintWriter? = null
-    private var serverSocket: ServerSocket? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,25 +38,24 @@ class MainActivity : AppCompatActivity(), ChessDelegate {
         resetButton.setOnClickListener {
             ChessGame.reset()
             chessView.invalidate()
-            serverSocket?.close()
         }
 
+        whiteGivesUp.setOnClickListener{
+            ChessGame.blackWins()
+            chessView.invalidate()
+        }
+
+        blackGivesUp.setOnClickListener{
+            ChessGame.whiteWins()
+            chessView.invalidate()
+        }
 
     }
 
     override fun pieceAt(square: Square): ChessPiece? = ChessGame.pieceAt(square)
 
     override fun movePiece(from: Square, to: Square) {
-
-
         ChessGame.movePiece(from, to)
         chessView.invalidate()
-
-        printWriter?.let {
-            val moveStr = "${from.col},${from.row},${to.col},${to.row}"
-            Executors.newSingleThreadExecutor().execute {
-                it.println(moveStr)
-            }
-        }
     }
 }

@@ -17,6 +17,7 @@
             android:layout_width="191dp"
             android:layout_height="60dp"
             android:fontFamily="sans-serif-medium"
+            android:rotation="-180"
             android:text="@string/give_up"
             android:textSize="20sp"
             android:textStyle="bold" />
