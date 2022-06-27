@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.goldenthumb.android.chess.data.ChessPiece
+import com.goldenthumb.android.chess.data.Square
 import java.io.PrintWriter
 import java.net.ConnectException
 import java.net.ServerSocket
@@ -14,79 +16,40 @@ import java.net.SocketException
 import java.util.*
 import java.util.concurrent.Executors
 
-const val TAG = "MainActivity"
+const val BOARD_SIZE = 3
 
 class MainActivity : AppCompatActivity(), ChessDelegate {
-    private val socketHost = "127.0.0.1"
-    private val socketPort: Int = 50000
-    private val socketGuestPort: Int = 50001 // used for socket server on emulator
+
     private lateinit var chessView: ChessView
     private lateinit var resetButton: Button
-    private lateinit var listenButton: Button
-    private lateinit var connectButton: Button
-    private var printWriter: PrintWriter? = null
-    private var serverSocket: ServerSocket? = null
-    private val isEmulator = Build.FINGERPRINT.contains("generic")
+    private lateinit var whiteGivesUp: Button
+    private lateinit var blackGivesUp: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        chessView = findViewById<ChessView>(R.id.chess_view)
-        resetButton = findViewById<Button>(R.id.reset_button)
-        listenButton = findViewById<Button>(R.id.listen_button)
-        connectButton = findViewById<Button>(R.id.connect_button)
+        chessView = findViewById(R.id.chess_view)
+        resetButton = findViewById(R.id.reset_button)
+        whiteGivesUp = findViewById(R.id.white_give_up)
+        blackGivesUp = findViewById(R.id.black_give_up)
         chessView.chessDelegate = this
 
         resetButton.setOnClickListener {
             ChessGame.reset()
             chessView.invalidate()
-            serverSocket?.close()
-            listenButton.isEnabled = true
         }
 
-        listenButton.setOnClickListener {
-            listenButton.isEnabled = false
-            val port = if (isEmulator) socketGuestPort else socketPort
-            Toast.makeText(this, "listening on $port", Toast.LENGTH_SHORT).show()
-            Executors.newSingleThreadExecutor().execute {
-                ServerSocket(port).let { srvSkt ->
-                    serverSocket = srvSkt
-                    try {
-                        val socket = srvSkt.accept()
-                        receiveMove(socket)
-                    } catch (e: SocketException) {
-                        // ignored, socket closed
-                    }
-                }
-            }
+        whiteGivesUp.setOnClickListener{
+            ChessGame.blackWins()
+            chessView.invalidate()
         }
 
-        connectButton.setOnClickListener {
-            Log.d(TAG, "socket client connecting ...")
-            Executors.newSingleThreadExecutor().execute {
-                try {
-                    val socket = Socket(socketHost, socketPort)
-                    receiveMove(socket)
-                } catch (e: ConnectException) {
-                    runOnUiThread {
-                        Toast.makeText(this, "connection failed", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+        blackGivesUp.setOnClickListener{
+            ChessGame.whiteWins()
+            chessView.invalidate()
         }
-    }
 
-    private fun receiveMove(socket: Socket) {
-        val scanner = Scanner(socket.getInputStream())
-        printWriter = PrintWriter(socket.getOutputStream(), true)
-        while (scanner.hasNextLine()) {
-            val move = scanner.nextLine().split(",").map { it.toInt() }
-            runOnUiThread {
-                ChessGame.movePiece(Square(move[0], move[1]), Square(move[2], move[3]))
-                chessView.invalidate()
-            }
-        }
     }
 
     override fun pieceAt(square: Square): ChessPiece? = ChessGame.pieceAt(square)
@@ -94,12 +57,5 @@ class MainActivity : AppCompatActivity(), ChessDelegate {
     override fun movePiece(from: Square, to: Square) {
         ChessGame.movePiece(from, to)
         chessView.invalidate()
-
-        printWriter?.let {
-            val moveStr = "${from.col},${from.row},${to.col},${to.row}"
-            Executors.newSingleThreadExecutor().execute {
-                it.println(moveStr)
-            }
-        }
     }
 }
