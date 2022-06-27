@@ -6,6 +6,8 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.goldenthumb.android.chess.data.ChessPiece
+import com.goldenthumb.android.chess.data.Square
 import java.io.PrintWriter
 import java.net.ConnectException
 import java.net.ServerSocket
@@ -15,6 +17,7 @@ import java.util.*
 import java.util.concurrent.Executors
 
 const val TAG = "MainActivity"
+const val BOARD_SIZE = 3;
 
 class MainActivity : AppCompatActivity(), ChessDelegate {
     private val socketHost = "127.0.0.1"
