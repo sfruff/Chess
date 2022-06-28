@@ -5,6 +5,7 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.tsu.android.chess.activity.BOARD_SIZE
 import com.tsu.android.chess.data.ChessPiece
 import com.tsu.android.chess.data.Square
 import kotlin.math.min

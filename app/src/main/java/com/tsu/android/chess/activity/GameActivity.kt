@@ -1,14 +1,18 @@
-package com.tsu.android.chess
+package com.tsu.android.chess.activity
 
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.tsu.android.chess.ChessDelegate
+import com.tsu.android.chess.ChessGame
+import com.tsu.android.chess.ChessView
+import com.tsu.android.chess.R
 import com.tsu.android.chess.data.ChessPiece
 import com.tsu.android.chess.data.Square
 
 const val BOARD_SIZE = 3
 
-class MainActivity : AppCompatActivity(), ChessDelegate {
+class GameActivity : AppCompatActivity(), ChessDelegate {
 
     private lateinit var chessView: ChessView
     private lateinit var resetButton: Button
@@ -17,7 +21,7 @@ class MainActivity : AppCompatActivity(), ChessDelegate {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_game)
 
         chessView = findViewById(R.id.chess_view)
         resetButton = findViewById(R.id.reset_button)
