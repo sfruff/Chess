@@ -1,12 +1,12 @@
-package com.goldenthumb.android.chess
+package com.tsu.android.chess
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import com.goldenthumb.android.chess.data.ChessPiece
-import com.goldenthumb.android.chess.data.Square
+import com.tsu.android.chess.data.ChessPiece
+import com.tsu.android.chess.data.Square
 import kotlin.math.min
 
 class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {

@@ -1,4 +1,4 @@
-package com.goldenthumb.android.chess.data
+package com.tsu.android.chess.data
 
 enum class Chessman {
     KING,

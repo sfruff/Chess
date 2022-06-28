@@ -1,20 +1,10 @@
-package com.goldenthumb.android.chess
+package com.tsu.android.chess
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.goldenthumb.android.chess.data.ChessPiece
-import com.goldenthumb.android.chess.data.Square
-import java.io.PrintWriter
-import java.net.ConnectException
-import java.net.ServerSocket
-import java.net.Socket
-import java.net.SocketException
-import java.util.*
-import java.util.concurrent.Executors
+import com.tsu.android.chess.data.ChessPiece
+import com.tsu.android.chess.data.Square
 
 const val BOARD_SIZE = 3
 

@@ -1,6 +1,6 @@
-package com.goldenthumb.android.chess
+package com.tsu.android.chess
 
-import com.goldenthumb.android.chess.data.Square
+import com.tsu.android.chess.data.Square
 import org.junit.Test
 import org.junit.Assert.*
 

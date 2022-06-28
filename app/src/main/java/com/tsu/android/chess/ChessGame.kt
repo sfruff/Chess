@@ -1,9 +1,9 @@
-package com.goldenthumb.android.chess
+package com.tsu.android.chess
 
-import com.goldenthumb.android.chess.data.ChessPiece
-import com.goldenthumb.android.chess.data.Chessman
-import com.goldenthumb.android.chess.data.Player
-import com.goldenthumb.android.chess.data.Square
+import com.tsu.android.chess.data.ChessPiece
+import com.tsu.android.chess.data.Chessman
+import com.tsu.android.chess.data.Player
+import com.tsu.android.chess.data.Square
 
 object ChessGame {
 

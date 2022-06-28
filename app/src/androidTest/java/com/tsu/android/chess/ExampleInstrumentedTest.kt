@@ -1,4 +1,4 @@
-package com.goldenthumb.android.chess
+package com.tsu.android.chess
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

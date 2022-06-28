@@ -1,4 +1,4 @@
-package com.goldenthumb.android.chess
+package com.tsu.android.chess
 
 import org.junit.Test
 
