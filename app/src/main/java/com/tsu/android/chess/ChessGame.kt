@@ -1,16 +1,20 @@
 package com.tsu.android.chess
 
+import android.widget.Toast
 import com.tsu.android.chess.activity.BOARD_SIZE
+import com.tsu.android.chess.activity.GameActivity
 import com.tsu.android.chess.data.ChessPiece
 import com.tsu.android.chess.data.Chessman
 import com.tsu.android.chess.data.Player
 import com.tsu.android.chess.data.Square
 
 object ChessGame {
-    private var turn: Player = Player.WHITE;
-    private var whiteWinCount = 0
-    private var blackWinCount = 0
 
+    var whiteWinCount = 0
+    var blackWinCount = 0
+
+    var chessDelegate : ChessDelegate? = null
+    private var turn: Player = Player.WHITE
     private var piecesBox = mutableSetOf<ChessPiece>()
 
     init {
@@ -30,7 +34,20 @@ object ChessGame {
     fun reset() {
         whiteWinCount = 0
         blackWinCount = 0
+        chessDelegate?.announceReset()
         resetPieces()
+    }
+
+    fun whiteWins() {
+        whiteWinCount++
+        resetPieces()
+        chessDelegate?.announceWhiteWins()
+    }
+
+    fun blackWins() {
+        blackWinCount++
+        resetPieces()
+        chessDelegate?.announceBlackWins()
     }
 
     fun resetPieces() {
@@ -113,7 +130,8 @@ object ChessGame {
                 &&
                 (
                         (pieceAt(to) == null && from.col == to.col) ||
-                                (pieceAt(to) != null && (from.col + 1 == to.col || from.col - 1 == to.col))
+                                (pieceAt(to) != null && pieceAt(to)?.player != pieceAt(from)?.player
+                                        && (from.col + 1 == to.col || from.col - 1 == to.col))
                         )
 
     private fun nextTurn() {
@@ -122,29 +140,22 @@ object ChessGame {
     }
 
     private fun draw() {
-        //TODO: make announcement
-
         resetPieces()
-    }
-
-    private fun whiteWins() {
-        //TODO: make announcement
-        whiteWinCount++
-        resetPieces()
-    }
-
-    private fun blackWins() {
-        //TODO: make announcement
-        blackWinCount++
-        resetPieces()
+        chessDelegate?.announceDraw()
     }
 
     private fun checkForResults() {
         val winner: Player? = checkWhoWins()
 
-        if (winner == Player.WHITE) whiteWins()
-        else if (winner == Player.BLACK) blackWins()
-        else if (checkForDraw()) draw()
+        if (winner == Player.WHITE) {
+            whiteWins()
+            return
+        } else if (winner == Player.BLACK){
+            blackWins()
+            return
+        }
+
+        if (checkForDraw()) draw()
 
     }
 
