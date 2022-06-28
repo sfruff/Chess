@@ -4,7 +4,8 @@ xmlns:android="http://schemas.android.com/apk/res/android"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:gravity="center"
-android:orientation="vertical">
+android:orientation="vertical"
+android:background="@color/background">
 
 <LinearLayout
     android:layout_width="match_parent"
@@ -15,12 +16,14 @@ android:orientation="vertical">
     <Button
         android:id="@+id/black_give_up"
         android:layout_width="191dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:fontFamily="sans-serif-medium"
         android:rotation="-180"
         android:text="@string/give_up"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 </LinearLayout>
 
 <com.tsu.android.chess.ChessView
@@ -37,11 +40,13 @@ android:orientation="vertical">
     <Button
         android:id="@+id/white_give_up"
         android:layout_width="191dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/give_up"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 
 </LinearLayout>
 
@@ -55,11 +60,13 @@ android:orientation="vertical">
     <Button
         android:id="@+id/reset_button"
         android:layout_width="191dp"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/reset_button"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:background="@drawable/custom_button"/>
 </LinearLayout>
 
 </LinearLayout>
