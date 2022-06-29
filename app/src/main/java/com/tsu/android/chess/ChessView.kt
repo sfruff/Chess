@@ -10,6 +10,7 @@ import com.tsu.android.chess.data.ChessPiece
 import com.tsu.android.chess.data.Square
 import kotlin.math.min
 
+
 class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
     private val scaleFactor = 0.9f
     private var originX = 20f

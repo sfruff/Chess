@@ -12,8 +12,7 @@ import com.tsu.android.chess.R
 import com.tsu.android.chess.data.ChessPiece
 import com.tsu.android.chess.data.Square
 
-
-const val BOARD_SIZE = 3
+var BOARD_SIZE: Int = 3
 
 class GameActivity : AppCompatActivity(), ChessDelegate {
 
@@ -23,11 +22,12 @@ class GameActivity : AppCompatActivity(), ChessDelegate {
     private lateinit var blackGivesUp: Button
     private lateinit var whiteScore: TextView
     private lateinit var blackScore: TextView
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        BOARD_SIZE = intent.getIntExtra("SIZE" ,3)
+
 
         chessView = findViewById(R.id.chess_view)
         resetButton = findViewById(R.id.reset_button)

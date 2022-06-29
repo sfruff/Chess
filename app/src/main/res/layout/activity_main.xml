@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bord_size"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.GameActivity"
-    android:background="@color/background">
+    android:background="@color/background"
+    tools:context=".activity.GameActivity">
 
 
     <Button
@@ -13,32 +14,80 @@
         android:layout_width="210dp"
         android:layout_height="50dp"
         android:layout_marginBottom="100dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="sans-serif-medium"
         android:text="Single Player"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:background="@drawable/custom_button"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Multiplayer"
         android:layout_width="210dp"
         android:layout_height="50dp"
         android:layout_marginTop="100dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="sans-serif-medium"
         android:text="Multiplayer"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/boardSize"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="300dp"
+        android:text="3"
+        android:gravity="center"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-        android:background="@drawable/custom_button"/>
+        android:background="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/minus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/custom_button"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginBottom="300dp"
+        android:background="@drawable/custom_button"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

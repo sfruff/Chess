@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import com.tsu.android.chess.R
 
 class MainActivity : AppCompatActivity() {
@@ -11,10 +12,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val multiplayer = findViewById<Button>(R.id.Multiplayer)
+        val textView = findViewById<TextView>(R.id.boardSize)
 
-        multiplayer!!.setOnClickListener {
+        var size : Int = textView.text.toString().toInt()
+
+        findViewById<Button>(R.id.minus)!!.setOnClickListener {
+            if(size > 3){
+                size -= 1
+                textView.text = size.toString()
+            }
+        }
+
+
+        findViewById<Button>(R.id.plus)!!.setOnClickListener {
+            if(size < 10){
+                size += 1
+                textView.text = size.toString()
+            }
+        }
+
+
+        findViewById<Button>(R.id.Multiplayer)!!.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra("SIZE", size)
             startActivity(intent)
         }
     }

@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdk 32
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.goldenthumb.android.chess"
+        applicationId "com.tsu.android.chess"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 

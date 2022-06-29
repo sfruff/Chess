@@ -13,10 +13,11 @@
         android:theme="@style/Theme.Chess">
         <activity
             android:name=".activity.GameActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

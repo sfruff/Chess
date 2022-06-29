@@ -2,7 +2,6 @@ package com.tsu.android.chess
 
 import android.widget.Toast
 import com.tsu.android.chess.activity.BOARD_SIZE
-import com.tsu.android.chess.activity.GameActivity
 import com.tsu.android.chess.data.ChessPiece
 import com.tsu.android.chess.data.Chessman
 import com.tsu.android.chess.data.Player
