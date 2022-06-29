@@ -1,5 +1,6 @@
 package com.tsu.android.chess.activity
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
@@ -22,6 +23,9 @@ class GameActivity : AppCompatActivity(), ChessDelegate {
     private lateinit var blackGivesUp: Button
     private lateinit var whiteScore: TextView
     private lateinit var blackScore: TextView
+    private lateinit var moveSound: MediaPlayer
+    private lateinit var winSound: MediaPlayer
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
@@ -38,6 +42,9 @@ class GameActivity : AppCompatActivity(), ChessDelegate {
 
         whiteScore.text = ChessGame.whiteWinCount.toString()
         blackScore.text = ChessGame.blackWinCount.toString()
+
+        moveSound = MediaPlayer.create(this, R.raw.move)
+        winSound = MediaPlayer.create(this, R.raw.win)
 
         chessView.chessDelegate = this
         ChessGame.chessDelegate = this
@@ -64,16 +71,19 @@ class GameActivity : AppCompatActivity(), ChessDelegate {
 
     override fun movePiece(from: Square, to: Square) {
         ChessGame.movePiece(from, to)
+        moveSound.start()
         chessView.invalidate()
     }
 
     override fun announceWhiteWins() {
         popupMessage("White Wins!")
+        winSound.start()
         whiteScore.text = ChessGame.whiteWinCount.toString()
     }
 
     override fun announceBlackWins() {
         popupMessage("Black Wins!")
+        winSound.start()
         blackScore.text = ChessGame.blackWinCount.toString()
     }
 
